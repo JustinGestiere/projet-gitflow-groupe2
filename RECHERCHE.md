@@ -1,16 +1,5 @@
 ## 1 – Recherche et compréhension
 1. Présentation de Git Flow :
-   
-
-2. Explication du versionnement sémantique (SemVer) :
-3. Le rôle du changelog et de la documentation de version :
-4. Le lien entre issues, milestones, et releases sur GitHub :
-
-
-site : https://mindsers.blog/fr/post/gitflow-la-methodologie-et-la-pratique
-
-
-GitFlow
 
 Gitflow est une extension / un modèle de workflow Git conçu pour apporter de la rigueur à la gestion de version dans les projets d’envergure.
 
@@ -34,3 +23,9 @@ GitFlow repose sur le workflow de création de branches repartie en plusieurs fo
 
 - limites :
 	- demande de la rigueur 
+
+
+
+2. Explication du versionnement sémantique (SemVer) :
+3. Le rôle du changelog et de la documentation de version :
+4. Le lien entre issues, milestones, et releases sur GitHub :
