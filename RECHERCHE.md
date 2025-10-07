@@ -3,7 +3,7 @@
 
 Gitflow est une extension / un modèle de workflow Git conçu pour apporter de la rigueur à la gestion de version dans les projets d’envergure.
 
-Gitflow est un ensemble de règles simples qui se basent sur le fonctionnement par branche de Git pour séparés les fonctionnalités et usages
+Gitflow est un ensemble de règles simples qui se basent sur le fonctionnement par branche de Git pour séparés les fonctionnalités et usages.
 
 | État / étape                                     | Branche concernée       | Actions & commandes principales                                             | But / rôle                                                                                                                                                                                                                                                                               |
 | ------------------------------------------------ | ----------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -27,11 +27,9 @@ Gitflow est un ensemble de règles simples qui se basent sur le fonctionnement p
 
 
 
-<<<<<<< HEAD
 1. Explication du versionnement sémantique (SemVer) :
 2. Le rôle du changelog et de la documentation de version :
 3. Le lien entre issues, milestones, et releases sur GitHub :
-=======
 
 ## 2. Explication du versionnement sémantique (SemVer) :
 
@@ -56,4 +54,4 @@ Le chiffre PATCH indique que des bugs ont été corrigés mais que la rétro-com
 
 3. Le rôle du changelog et de la documentation de version :
 4. Le lien entre issues, milestones, et releases sur GitHub :
->>>>>>> 8c269b769234a33fe26549cf7f51365bac7d940a
+test
