@@ -3,7 +3,7 @@
 
 Gitflow est une extension / un modèle de workflow Git conçu pour apporter de la rigueur à la gestion de version dans les projets d’envergure.
 
-GitFlow repose sur le workflow de création de branches repartie en plusieurs fonctionnalité. 
+Gitflow est un ensemble de règles simples qui se basent sur le fonctionnement par branche de Git pour séparés les fonctionnalités et usages
 
 | État / étape                                     | Branche concernée       | Actions & commandes principales                                             | But / rôle                                                                                                                                                                                                                                                                               |
 | ------------------------------------------------ | ----------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -16,16 +16,17 @@ GitFlow repose sur le workflow de création de branches repartie en plusieurs fo
 ![alt text](image.png)
 
 - Avantages :
-	- historique de projet
-	- grosse structure claire 
+	- Historique de projet
+	- Grosse structure claire 
 	- Travail en parallèle facile
-	- séparation nette entre le développement et la prod
+	- Séparation nette entre le développement et la prod
 
-- limites :
-	- demande de la rigueur 
+- Limites :
+	- Demande de la rigueur
+	- Difficile à comprendre au début
 
 
 
-2. Explication du versionnement sémantique (SemVer) :
-3. Le rôle du changelog et de la documentation de version :
-4. Le lien entre issues, milestones, et releases sur GitHub :
+1. Explication du versionnement sémantique (SemVer) :
+2. Le rôle du changelog et de la documentation de version :
+3. Le lien entre issues, milestones, et releases sur GitHub :
