@@ -26,6 +26,18 @@ GitFlow repose sur le workflow de création de branches repartie en plusieurs fo
 
 
 
-2. Explication du versionnement sémantique (SemVer) :
+
+## 2. Explication du versionnement sémantique (SemVer) :
+
+L'objectif du Semantic Versioning est de donner un numéro unique à chaque nouvelle version d'un logiciel pour avoir le plus d'inforamtions pour l'utilisateur sur les améliorations/modifications
+
+Un identifiant minimal de version qui ressemble à 0.0.1 se lira tout simplement MAJOR.MINOR.PATCH il est a mettre que sur la branche release et quand elle est mergée sur la main alors elle va ajouter un tag avec le nom de la version sur la main et ensuite la branche release st supprimée
+
+Le chiffre MAJOR est le plus critique, c'est le seul qui indique une évolution de l'API tellement importante que la rétrocompatibilité n'est plus assurée
+
+Le chiffre MINOR permet d'indiquer que des fonctionnalités ont été ajoutées (ou que des fonctionnalités ont été dépréciées) mais que l'API reste compatible avec les anciennes versions.
+
+Le chiffre PATCH indique que des bugs ont été corrigés mais que la rétro-compatibilité est assurée.
+
 3. Le rôle du changelog et de la documentation de version :
 4. Le lien entre issues, milestones, et releases sur GitHub :
