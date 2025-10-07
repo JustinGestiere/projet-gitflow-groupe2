@@ -52,6 +52,65 @@ Le chiffre PATCH indique que des bugs ont été corrigés mais que la rétro-com
 | `v2.0.0` |  Majeure          | Refonte complète du code ou BDD   |
 
 
-3. Le rôle du changelog et de la documentation de version :
-4. Le lien entre issues, milestones, et releases sur GitHub :
-test
+## 3. Le rôle du changelog et de la documentation de version :
+
+Le changelog est un fichier nommé CHANGELOG.md, qui retrace l’historique des évolutions du projet entre chaque version.
+
+Il sert à informer clairement les utilisateurs et les développeurs de ce qui a changé, ajouté, corrigé ou supprimé.
+
+### 📝 Exemple
+```markdown
+## [1.3.0] – 2025-10-07
+### Added
+- Nouvelle fonctionnalité de recherche avancée (#45)
+
+### Fixed
+- Correction du bug sur la page de connexion (#52)
+
+### Changed
+- Amélioration du design du tableau de bord
+```
+
+La documentation de version, souvent associée au changelog, détaille les changements plus en profondeur (guide de migration, exemples de nouvelles API, instructions de mise à jour, etc.).
+Elle complète le changelog en expliquant comment utiliser les nouvelles versions plutôt que simplement ce qui a changé.
+
+## 4. Le lien entre issues, milestones, et releases sur GitHub :
+
+🔹 Issues
+
+Les issues représentent des tâches, bugs ou demandes de fonctionnalités.
+Elles servent à suivre le travail à effectuer et peuvent être associées à une branche ou à une pull request.
+
+Exemples :
+
+🐞 Issue #12 – Corriger l’erreur de login
+
+✨ Issue #18 – Ajouter la recherche par filtres
+
+🔹 Milestones
+
+Les milestones regroupent plusieurs issues en un objectif commun (souvent une version ou une étape du projet).
+Elles permettent de planifier les priorités et de suivre la progression d’une version.
+
+Exemple :
+
+Milestone v1.3.0 → contient toutes les issues à résoudre avant la sortie de la version 1.3.0.
+
+🔹 Releases
+
+Les releases correspondent aux versions publiées du projet.
+Elles sont créées à partir d’un tag Git (souvent lié au versionnement sémantique, ex : v1.3.0) et peuvent inclure :
+
+le changelog associé,
+
+les fichiers binaires ou exécutables,
+
+la description des nouveautés.
+
+Lien entre eux :
+
+Les issues représentent les tâches.
+
+Les milestones regroupent les issues prévues pour une même version.
+
+Quand toutes les issues d’une milestone sont terminées, on crée une release associée.
