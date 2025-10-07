@@ -28,9 +28,9 @@ Gitflow est un ensemble de règles simples qui se basent sur le fonctionnement p
 
 ## 2. Explication du versionnement sémantique (SemVer) :
 
-L'objectif du Semantic Versioning est de donner un numéro unique à chaque nouvelle version d'un logiciel pour avoir le plus d'inforamtions pour l'utilisateur sur les améliorations/modifications
+L'objectif du Semantic Versioning est de donner un numéro unique à chaque nouvelle version d'un logiciel pour avoir le plus d'informations pour l'utilisateur sur les améliorations/modifications
 
-Un identifiant minimal de version qui ressemble à 0.0.1 se lira tout simplement MAJOR.MINOR.PATCH il est a mettre que sur la branche release et quand elle est mergée sur la main alors elle va ajouter un tag avec le nom de la version sur la main et ensuite la branche release st supprimée
+Un identifiant minimal de version qui ressemble à 0.0.1 se lira tout simplement MAJOR.MINOR.PATCH il est a mettre que sur la branche release et quand elle est mergée sur la main alors elle va ajouter un tag avec le nom de la version sur la main et ensuite la branche release est supprimée.
 
 Le chiffre MAJOR est le plus critique, c'est le seul qui indique une évolution de l'API tellement importante que la rétrocompatibilité n'est plus assurée
 
@@ -96,11 +96,12 @@ Milestone v1.3.0 → contient toutes les issues à résoudre avant la sortie de 
 Les releases correspondent aux versions publiées du projet.
 Elles sont créées à partir d’un tag Git (souvent lié au versionnement sémantique, ex : v1.3.0) et peuvent inclure :
 
-le changelog associé,
+Le changelog associé,
 
-les fichiers binaires ou exécutables,
+Les fichiers binaires ou exécutables,
 
-la description des nouveautés.
+La description des nouveautés.
+
 
 Lien entre eux :
 
