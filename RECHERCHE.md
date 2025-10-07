@@ -39,5 +39,14 @@ Le chiffre MINOR permet d'indiquer que des fonctionnalités ont été ajoutées 
 
 Le chiffre PATCH indique que des bugs ont été corrigés mais que la rétro-compatibilité est assurée.
 
+| Version  | Type                | Exemple de changements            |
+| -------- | ------------------- | --------------------------------- |
+| `v1.0.0` |  Release initiale | Version stable de base            |
+| `v1.1.0` |  Mineure           | Nouvelles fonctionnalités         |
+| `v1.1.1` |  Correctif        | Petit bug corrigé                 |
+| `v1.2.0` |  Mineure           | Amélioration UX / fonctionnalités |
+| `v2.0.0` |  Majeure          | Refonte complète du code ou BDD   |
+
+
 3. Le rôle du changelog et de la documentation de version :
 4. Le lien entre issues, milestones, et releases sur GitHub :
