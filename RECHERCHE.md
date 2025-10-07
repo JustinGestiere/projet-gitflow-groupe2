@@ -1,5 +1,5 @@
-## 1 – Recherche et compréhension
-1. Présentation de Git Flow :
+# 1 – Recherche et compréhension
+## 1. Présentation de Git Flow :
 
 Gitflow est une extension / un modèle de workflow Git conçu pour apporter de la rigueur à la gestion de version dans les projets d’envergure.
 
@@ -25,11 +25,6 @@ Gitflow est un ensemble de règles simples qui se basent sur le fonctionnement p
 	- Demande de la rigueur
 	- Difficile à comprendre au début
 
-
-
-1. Explication du versionnement sémantique (SemVer) :
-2. Le rôle du changelog et de la documentation de version :
-3. Le lien entre issues, milestones, et releases sur GitHub :
 
 ## 2. Explication du versionnement sémantique (SemVer) :
 
