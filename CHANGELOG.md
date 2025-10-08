@@ -6,5 +6,6 @@
     - README et documentation Git Flow
     - Processus de contribution (CONTRIBUTING.md)
     hotfix
-    test
+    ## v1.0.1
+- Description des changements de cette version
 ```
