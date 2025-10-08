@@ -1,11 +1,11 @@
-name: Fermeture automatique des issues
+name: CI – Fermeture d'issues et vérification du changelog
 
 on:
   push:
     branches:
       - "**"
   pull_request:
-    types: [] 
+    types: [opened, synchronize, reopened]
 
 jobs:
   close_issues:
@@ -41,3 +41,58 @@ jobs:
             gh issue close "$number" --repo "${GITHUB_REPOSITORY}" \
               --comment "✅ Fermée automatiquement par le commit [${GITHUB_SHA::7}] sur la branche \`${GITHUB_REF_NAME}\`"
           done
+
+  verify_changelog:
+    name: Vérifier la cohérence entre CHANGELOG.md et les tags Git
+    runs-on: ubuntu-latest
+    needs: close_issues  # attend que le job précédent se termine (optionnel)
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # nécessaire pour récupérer les tags
+
+      - name: Vérifier la présence du fichier CHANGELOG.md
+        run: |
+          if [ ! -f "CHANGELOG.md" ]; then
+            echo "❌ Le fichier CHANGELOG.md est introuvable à la racine du dépôt."
+            echo "Veuillez créer un fichier CHANGELOG.md listant les changements pour chaque version."
+            exit 1
+          else
+            echo "✅ Fichier CHANGELOG.md trouvé."
+          fi
+
+      - name: "Identifier le dernier tag Git (format attendu : vMAJOR.MINOR.PATCH)"
+        id: get_tag
+        run: |
+          last_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "none")
+          if [[ "$last_tag" == "none" ]]; then
+            echo "❌ Aucun tag Git n’a été trouvé dans le dépôt."
+            echo "Veuillez créer un tag de version (ex: v1.0.0) avant de relancer le workflow."
+            exit 1
+          fi
+
+          if [[ ! "$last_tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "❌ Le dernier tag ($last_tag) ne respecte pas le format attendu : vMAJOR.MINOR.PATCH (ex: v1.2.3)."
+            exit 1
+          fi
+
+          echo "✅ Dernier tag détecté : $last_tag"
+          echo "TAG=$last_tag" >> $GITHUB_ENV
+
+      - name: Vérifier que le changelog mentionne la dernière version
+        run: |
+          tag="${TAG}"
+
+          if grep -q "$tag" CHANGELOG.md; then
+            echo "✅ Le fichier CHANGELOG.md contient bien une section pour la version $tag."
+          else
+            echo "❌ Le fichier CHANGELOG.md ne contient pas de référence à la version $tag."
+            echo ""
+            echo "👉 Pour corriger : ajoutez une section similaire à ceci dans CHANGELOG.md :"
+            echo ""
+            echo "## $tag"
+            echo "- Description des changements de cette version"
+            exit 1
+          fi
