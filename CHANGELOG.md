@@ -5,4 +5,5 @@
     - Structure du projet
     - README et documentation Git Flow
     - Processus de contribution (CONTRIBUTING.md)
+    - Correction erreur
 ```
