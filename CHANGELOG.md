@@ -6,4 +6,5 @@
     - README et documentation Git Flow
     - Processus de contribution (CONTRIBUTING.md)
     hotfix
+    test
 ```
