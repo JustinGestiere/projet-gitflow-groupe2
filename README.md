@@ -1,7 +1,7 @@
 # TP-GitFlow
 Quentin / Robin / Justin
 
-Site de vente de booster de kayou
+Site de vente de booster de kayoux
 
 ## Workflow Git Flow
 
