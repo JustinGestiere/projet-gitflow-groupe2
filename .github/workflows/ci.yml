@@ -3,9 +3,9 @@ name: Fermeture automatique des issues
 on:
   push:
     branches:
-      - "**"   
+      - "**"
   pull_request:
-    types: []  
+    types: [] 
 
 jobs:
   close_issues:
@@ -16,18 +16,15 @@ jobs:
       - name: Récupérer le code
         uses: actions/checkout@v4
 
-      - name: Extraire les messages de commit
-        id: commits
+      - name: Extraire le message du dernier commit
+        id: extract_commit
         run: |
-          echo "COMMITS<<EOF" >> $GITHUB_ENV
-          git log -1 --pretty=format:"%s" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "COMMITS=$(git log -1 --pretty=%s)" >> $GITHUB_ENV
 
       - name: Rechercher les références d'issues
         id: find_issues
         run: |
-          echo "Issues trouvées dans le dernier commit :"
-          echo "${COMMITS}"
+          echo "Message du commit : ${COMMITS}"
           echo "${COMMITS}" | grep -E -o '(Fixes|Closes|Resolves) #[0-9]+' | uniq > issues.txt || true
           cat issues.txt || echo "Aucune issue détectée"
           echo "ISSUES=$(cat issues.txt | tr '\n' ',' | sed 's/,$//')" >> $GITHUB_ENV
@@ -41,5 +38,6 @@ jobs:
           for ref in "${refs[@]}"; do
             number=$(echo "$ref" | grep -Eo '[0-9]+')
             echo "Fermeture de l’issue #$number"
-            gh issue close "$number" --repo "${GITHUB_REPOSITORY}" --comment "✅ Fermée automatiquement par le commit [${GITHUB_SHA::7}] sur la branche \`${GITHUB_REF_NAME}\`"
+            gh issue close "$number" --repo "${GITHUB_REPOSITORY}" \
+              --comment "✅ Fermée automatiquement par le commit [${GITHUB_SHA::7}] sur la branche \`${GITHUB_REF_NAME}\`"
           done
