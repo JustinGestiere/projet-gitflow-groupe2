@@ -1,4 +1,4 @@
-name: CI – Fermeture d'issues, vérification du changelog et nommage des branches
+name: CI – Fermer issues, vérifier changelog, nommage branches et fichiers obligatoires
 
 on:
   push:
@@ -57,7 +57,6 @@ jobs:
         run: |
           if [ ! -f "CHANGELOG.md" ]; then
             echo "❌ Le fichier CHANGELOG.md est introuvable à la racine du dépôt."
-            echo "Veuillez créer un fichier CHANGELOG.md listant les changements pour chaque version."
             exit 1
           else
             echo "✅ Fichier CHANGELOG.md trouvé."
@@ -69,12 +68,11 @@ jobs:
           last_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "none")
           if [[ "$last_tag" == "none" ]]; then
             echo "❌ Aucun tag Git n’a été trouvé dans le dépôt."
-            echo "Veuillez créer un tag de version (ex: v1.0.0) avant de relancer le workflow."
             exit 1
           fi
 
           if [[ ! "$last_tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "❌ Le dernier tag ($last_tag) ne respecte pas le format attendu : vMAJOR.MINOR.PATCH (ex: v1.2.3)."
+            echo "❌ Le dernier tag ($last_tag) ne respecte pas le format attendu : vMAJOR.MINOR.PATCH"
             exit 1
           fi
 
@@ -89,11 +87,7 @@ jobs:
             echo "✅ Le fichier CHANGELOG.md contient bien une section pour la version $tag."
           else
             echo "❌ Le fichier CHANGELOG.md ne contient pas de référence à la version $tag."
-            echo ""
-            echo "👉 Pour corriger : ajoutez une section similaire à ceci dans CHANGELOG.md :"
-            echo ""
-            echo "## $tag"
-            echo "- Description des changements de cette version"
+            echo "👉 Pour corriger : ajoutez une section ## $tag"
             exit 1
           fi
 
@@ -116,9 +110,30 @@ jobs:
             echo "✅ Branche hotfix détectée : OK"
           else
             echo "❌ Nom de branche invalide : $branch"
-            echo "👉 La branche doit respecter la convention Git Flow :"
-            echo "   - feature/nom-de-la-fonctionnalité"
-            echo "   - release/x.y.z"
-            echo "   - hotfix/x.y.z"
+            echo "👉 La branche doit respecter Git Flow : feature/..., release/x.y.z, hotfix/x.y.z"
             exit 1
+          fi
+
+  check_required_files:
+    name: Vérifier la présence des fichiers obligatoires
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Vérifier README.md, CHANGELOG.md, LICENSE et CONTRIBUTING.md
+        run: |
+          missing_files=""
+          for f in README.md CHANGELOG.md LICENSE CONTRIBUTING.md; do
+            if [ ! -f "$f" ]; then
+              missing_files="$missing_files $f"
+            fi
+          done
+
+          if [ -n "$missing_files" ]; then
+            echo "❌ Les fichiers suivants sont manquants :$missing_files"
+            exit 1
+          else
+            echo "✅ Tous les fichiers obligatoires sont présents."
           fi
