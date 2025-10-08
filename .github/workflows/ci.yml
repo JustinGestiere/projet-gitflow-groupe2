@@ -1,4 +1,4 @@
-name: CI – Fermeture d'issues et vérification du changelog
+name: CI – Fermeture d'issues, vérification du changelog et nommage des branches
 
 on:
   push:
@@ -45,13 +45,13 @@ jobs:
   verify_changelog:
     name: Vérifier la cohérence entre CHANGELOG.md et les tags Git
     runs-on: ubuntu-latest
-    needs: close_issues  # attend que le job précédent se termine (optionnel)
+    needs: close_issues
 
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # nécessaire pour récupérer les tags
+          fetch-depth: 0
 
       - name: Vérifier la présence du fichier CHANGELOG.md
         run: |
@@ -94,5 +94,31 @@ jobs:
             echo ""
             echo "## $tag"
             echo "- Description des changements de cette version"
+            exit 1
+          fi
+
+  check_branch_name:
+    name: Vérifier le nommage des branches Git Flow
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Vérifier le nom de la branche
+        run: |
+          branch="${GITHUB_HEAD_REF}"
+          echo "Nom de la branche : $branch"
+
+          if [[ "$branch" =~ ^feature\/.+$ ]]; then
+            echo "✅ Branche feature détectée : OK"
+          elif [[ "$branch" =~ ^release\/[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "✅ Branche release détectée : OK"
+          elif [[ "$branch" =~ ^hotfix\/[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "✅ Branche hotfix détectée : OK"
+          else
+            echo "❌ Nom de branche invalide : $branch"
+            echo "👉 La branche doit respecter la convention Git Flow :"
+            echo "   - feature/nom-de-la-fonctionnalité"
+            echo "   - release/x.y.z"
+            echo "   - hotfix/x.y.z"
             exit 1
           fi
